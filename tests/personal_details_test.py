@@ -13,8 +13,10 @@ class PersonalDetailsTestCase(unittest.TestCase):
         self.login_page = LoginPage(self.driver)
         self.personal_details_page = PersonalDetailsPage(self.driver)
 
+
     def tearDown(self):
         self.driver.quit()
+
 
     def test_01_see_personal_details(self):
         driver = self.driver
@@ -23,6 +25,7 @@ class PersonalDetailsTestCase(unittest.TestCase):
         self.personal_details_page.goto_page()
 
         self.assertEqual("Personal Details", driver.find_element_by_xpath("//*[@id='pdMainContainer']/div[1]/h1").text)
+
 
     def test_02_edit_personal_details(self):
         driver = self.driver

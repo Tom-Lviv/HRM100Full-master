@@ -1,6 +1,7 @@
 import unittest
 from time import sleep
 
+import EXAMPLE as EXAMPLE
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -70,13 +71,13 @@ class AddPhotoTestCase(unittest.TestCase):
         self.add_photograph_page.chose_file(file_path)
         self.add_photograph_page.upload_button()
 
-        #self.wait.until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".message.warning")))
-        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.warning"),'Failed to Save: File Type Not Allowed'))
+        # self.wait.until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".message.warning")))
+        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.warning"),'Failed to Save: File Type Not Allowed')
 
-
-    """
+    ######
 
         ======USE THIS TEST CASE AS EXAMPLE OF WHILE LOOP=======
+
 
         def test_04_add_photograph(self):
             driver = self.driver
@@ -100,7 +101,7 @@ class AddPhotoTestCase(unittest.TestCase):
                                                                                       'Successfully Deleted'))
                 except:
                     driver.find_element_by_id('empPic').click()
-                    driver.find_element_by_name('photofile').send_keys('/Users/nazarkruk/Desktop/jpg_500kbmb.jpg')
+                    driver.find_element_by_name('photofile').send_keys('/Users/rcg/Desktop/jpg_500kbmb.jpg')
                     driver.find_element_by_id('btnSave').click()
                     self.wait.until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".message.success")))
                     self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
@@ -109,10 +110,9 @@ class AddPhotoTestCase(unittest.TestCase):
                     break
 
 
-
             else:
                 driver.find_element_by_id('empPic').click()
-                driver.find_element_by_name('photofile').send_keys('/Users/nazarkruk/Desktop/jpg_500kbmb.jpg')
+                driver.find_element_by_name('photofile').send_keys('/Users/rcg/Desktop/jpg_500kbmb.jpg')
                 driver.find_element_by_id('btnSave').click()
                 self.wait.until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".message.success")))
                 self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
@@ -123,7 +123,8 @@ class AddPhotoTestCase(unittest.TestCase):
             self.assertTrue('Delete', button_delete)
 
             self.assertTrue(True)
-    """
+
+    """"""
 
 
 if __name__ == '__main__':

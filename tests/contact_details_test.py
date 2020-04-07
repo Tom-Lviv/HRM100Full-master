@@ -24,14 +24,11 @@ class ContactDetailsTestCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-
     def test_08_contact_details(self):
-
         self.login_page.login()
         self.login_page.get_welcome_massage()
         self.personal_details_page.goto_page()
         self.contact_details_page.goto_page()
-
 
         page_title = self.driver.find_element_by_xpath('//*[@id="contact-details"]/div[2]/div[1]/h1').text
         self.assertEqual('Contact Details', page_title)
@@ -68,7 +65,8 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.select_conuntry_by_index(country_index)
         self.contact_details_page.save_button()
 
-        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),'Successfully Saved'))
+        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
+                                                                          'Successfully Saved'))
 
         self.assertEqual(city, driver.find_element_by_id('contact_city').get_attribute('value'))
 
@@ -84,13 +82,14 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_zip_code(zip_code)
         self.contact_details_page.save_button()
 
-        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),'Successfully Saved'))
+        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
+                                                                          'Successfully Saved'))
 
-        self.assertEqual(zip_code, driver.find_element_by_id('contact_emp_zipcode').get_attribute('value'))
+        self.assertEqual(zip_code, driver.find_element_by_id('contact_emp_zip_code').get_attribute('value'))
 
     def test_11_1_contact_zip_more_10(self):
         driver = self.driver
-        zip_code = '123456789123456789'
+        zip_code = '1234567890000000123'
 
         self.login_page.login()
         self.login_page.get_welcome_massage()
@@ -101,9 +100,10 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_zip_code(zip_code)
         self.contact_details_page.save_button()
 
-        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),'Successfully Saved'))
+        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
+                                                                          'Successfully Saved'))
 
-        number_characters = len(driver.find_element_by_id('contact_emp_zipcode').get_attribute('value'))
+        number_characters = len(driver.find_element_by_id('contact_emp_zip_code').get_attribute('value'))
         self.assertTrue(number_characters <= 10)
 
     def test_12_contact_valid_phone(self):
@@ -120,7 +120,8 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_work_phone(phone_number)
         self.contact_details_page.save_button()
 
-        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),'Successfully Saved'))
+        self.wait.until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".message.success"),
+                                                                          'Successfully Saved'))
         self.assertEqual(phone_number, driver.find_element_by_id('contact_emp_mobile').get_attribute('value'))
 
     def test_13_contact_invalid_phone(self):
@@ -136,7 +137,8 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_work_phone(phone_number)
         self.contact_details_page.save_button()
 
-        self.assertTrue(driver.find_element_by_xpath('//*[@id="frmEmpContactDetails"]/fieldset/ol[2]/li[1]/span').text == 'Allows numbers and only + - / ( )')
+        self.assertTrue(driver.find_element_by_xpath(
+            '//*[@id="frmEmpContactDetails"]/fieldset/ol[2]/li[1]/span').text == 'Allows numbers and only + - / ( )')
 
     def test_14_contact_valid_email(self):
         driver = self.driver
@@ -154,7 +156,6 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.assertEqual(work_email, driver.find_element_by_id('contact_emp_work_email').get_attribute('value'))
         self.assertEqual(other_email, driver.find_element_by_id('contact_emp_oth_email').get_attribute('value'))
 
-
     def test_15_contact_invalid_email(self):
         driver = self.driver
         work_email = 'work@test'
@@ -168,9 +169,8 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_other_email(other_email)
         self.contact_details_page.save_button()
 
-        self.assertTrue(driver.find_element_by_xpath('//*[@id="frmEmpContactDetails"]/fieldset/ol[3]/li[1]/span').text == 'Expected format: admin@example.com')
-
-
+        self.assertTrue(driver.find_element_by_xpath(
+            '//*[@id="frmEmpContactDetails"]/field_set/ol[3]/li[1]/span').text == 'Expected format: admin@example.com')
 
     def test_15_contact_same_email(self):
         driver = self.driver
@@ -185,7 +185,8 @@ class ContactDetailsTestCase(unittest.TestCase):
         self.contact_details_page.set_other_email(work_email)
         self.contact_details_page.save_button()
 
-        self.assertTrue(driver.find_element_by_xpath('//*[@id="frmEmpContactDetails"]/fieldset/ol[3]/li[2]/span').text == 'Already exists')
+        self.assertTrue(driver.find_element_by_xpath(
+            '//*[@id="frmEmpContactDetails"]/fieldset/ol[3]/li[2]/span').text == 'Already exists')
 
 
 if __name__ == '__main__':
